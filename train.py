@@ -35,7 +35,7 @@ def main():
         # ============================================================
         # STEP 1: LOAD AND EXPLORE DATA
         # ============================================================
-        from src.eda import load_data, run_eda
+        from src.eda import load_data
         from config import DATA_PATH, OUTPUT_DIR
         
         print("="*60)
@@ -43,7 +43,6 @@ def main():
         print("="*60)
         
         df = load_data(DATA_PATH)
-        run_eda(df)
         
         # ============================================================
         # STEP 2: FEATURE EXTRACTION
@@ -57,6 +56,11 @@ def main():
         feature_df = build_feature_matrix(df)
         X = feature_df[FEATURE_COLUMNS]
         y = df["label"]
+        
+        feature_df_save = feature_df.copy()
+        feature_df_save["label"] = y
+        feature_df_save.to_csv("data/features.csv", index=False)
+        print("Feature matrix saved to data/features.csv")
         
         # ============================================================
         # STEP 3: RULE-BASED CLASSIFIER
