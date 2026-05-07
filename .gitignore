@@ -1,15 +1,16 @@
-# Exclude heavy model files
+# Virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Heavy model files
 models/
 *.pkl
 *.joblib
 *.h5
 *.pt
 *.pth
-
-# Keep data
-!data/
-
-__pycache__/
-*.pyc
-*.pyo
-outputs/
